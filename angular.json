@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "tougo-words"
+  "defaultProject": "tougo-words",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,23 @@
+<h2>Search for related words</h2>
+
+<div class="explanation">
+  <span> Type one word in english to recover related words in japanese </span>
+</div>
+
+<div class="search-tab">
+  <input [(ngModel)]="word" />
+</div>
+
+<div class="search-button">
+  <span (click)="onSearch()">search</span>
+</div>
+
+<div class="related-words-list">
+  <ul>
+    <li
+      *ngFor="let relatedWord of relatedWords"
+    >
+      <span class="badge">{{ relatedWord.word }}</span>
+    </li>
+  </ul>
+</div>
