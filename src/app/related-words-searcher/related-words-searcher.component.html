@@ -14,10 +14,32 @@
 
 <div class="related-words-list">
   <ul>
-    <li
-      *ngFor="let relatedWord of relatedWords"
-    >
+    <li *ngFor="let relatedWord of relatedWords">
       <span class="badge">{{ relatedWord.word }}</span>
     </li>
   </ul>
 </div>
+
+<div class="datamuse-words-list">
+  <ul>
+    <li *ngFor="let datamuseWord of datamuseWords">
+      <span class="badge">{{ datamuseWord.word }}</span>
+    </li>
+  </ul>
+</div>
+
+<!-- <div class="tanslated-words-list">
+  <ul>
+    <li *ngFor="let translatedWord of translatedWords">
+      <span class="badge">{{ translatedWord.word }}</span>
+    </li>
+  </ul>
+</div>
+
+<div class="japanese-word-info-list">
+  <ul>
+    <li *ngFor="let japaneseWordInfo of japaneseWordInfoList">
+      <span class="badge">{{ japaneseWordInfo.word }}</span>
+    </li>
+  </ul>
+</div> -->
