@@ -28,6 +28,18 @@
   </ul>
 </div>
 
+<div class="test-button">
+  <span (click)="onTestConcatenatedRequests()">search</span>
+</div>
+
+<div class="test-numbers-list">
+  <ul>
+    <li *ngFor="let mynumber of varForTestingConcatenatedRequests">
+      <span class="badge">{{ mynumber }}</span>
+    </li>
+  </ul>
+</div>
+
 <!-- <div class="tanslated-words-list">
   <ul>
     <li *ngFor="let translatedWord of translatedWords">
