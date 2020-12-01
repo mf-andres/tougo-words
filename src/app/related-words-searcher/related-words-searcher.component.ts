@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RelatedWord } from '../related-word';
 import { SearchEnglishRelatedWordsService } from '../search-english-related-words.service';
 import { DatamuseWord } from '../datamuse-word';
+import { TranslateEnglishRelatedWordsService } from '../translate-english-related-words.service';
+import { TranslatedWord } from '../translated-word';
 import { Observable, of, forkJoin } from 'rxjs';
 
 @Component({
@@ -13,10 +15,13 @@ export class RelatedWordsSearcherComponent implements OnInit {
   word: string = 'example';
   relatedWords: RelatedWord[] = [];
   datamuseWords: DatamuseWord[] = [];
+  translatedWords: TranslatedWord[] = [];
+ 
   varForTestingConcatenatedRequests: number[] = [];
 
   constructor(
-    private searchEnglishRelatedWordsService: SearchEnglishRelatedWordsService
+    private searchEnglishRelatedWordsService: SearchEnglishRelatedWordsService,
+    private translateEnglishRelatedWordsService: TranslateEnglishRelatedWordsService
   ) {}
 
   ngOnInit(): void {}
@@ -25,7 +30,24 @@ export class RelatedWordsSearcherComponent implements OnInit {
     console.log('Searching for ' + this.word);
     this.searchEnglishRelatedWordsService
       .search(this.word)
-      .subscribe((datamuseWords) => this.datamuseWords = datamuseWords);
+      .subscribe(datamuseWords => {
+        this.datamuseWords = datamuseWords
+        const translatedWordsObservables = datamuseWords.map(this.translateEnglishRelatedWordsService.translateWord)
+        forkJoin(translatedWordsObservables).subscribe(translatedWords => {
+          this.translatedWords = translatedWords
+        })  
+      });
+  }
+
+  onTestConcatenatedRequests(): void {
+    console.log('testing concatenated request')
+    this.firstRequest().subscribe(myNumbers => {
+      const myProcessedNumbers = myNumbers.map(this.secondRequest)
+      forkJoin(myProcessedNumbers).subscribe(myNumbers => {
+        const myProcessedNumbers = myNumbers.map(this.thirdRequest)
+        forkJoin(myProcessedNumbers).subscribe(myNumbers => this.varForTestingConcatenatedRequests = myNumbers)
+      })
+    });
   }
 
   firstRequest(): Observable<number[]> {
@@ -41,16 +63,5 @@ export class RelatedWordsSearcherComponent implements OnInit {
   thirdRequest(myNumber: number): Observable<number> {
     myNumber += 2
     return of(myNumber)
-  }
-
-  onTestConcatenatedRequests(): void {
-    console.log('testing concatenated request')
-    this.firstRequest().subscribe(myNumbers => {
-      const myProcessedNumbers = myNumbers.map(this.secondRequest)
-      forkJoin(myProcessedNumbers).subscribe(myNumbers => {
-        const myProcessedNumbers = myNumbers.map(this.thirdRequest)
-        forkJoin(myProcessedNumbers).subscribe(myNumbers => this.varForTestingConcatenatedRequests = myNumbers)
-      })
-    });
   }
 }

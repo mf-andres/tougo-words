@@ -1,3 +1,4 @@
+
 <h2>Search for related words</h2>
 
 <div class="explanation">
@@ -28,8 +29,24 @@
   </ul>
 </div>
 
+<div class="tanslated-words-list">
+  <ul>
+    <li *ngFor="let translatedWord of translatedWords">
+      <span class="badge">{{ translatedWord.word }}</span>
+    </li>
+  </ul>
+</div>
+
+<!-- <div class="japanese-word-info-list">
+  <ul>
+    <li *ngFor="let japaneseWordInfo of japaneseWordInfoList">
+      <span class="badge">{{ japaneseWordInfo.word }}</span>
+    </li>
+  </ul>
+</div> -->
+
 <div class="test-button">
-  <span (click)="onTestConcatenatedRequests()">search</span>
+  <span (click)="onTestConcatenatedRequests()">test search</span>
 </div>
 
 <div class="test-numbers-list">
@@ -39,19 +56,3 @@
     </li>
   </ul>
 </div>
-
-<!-- <div class="tanslated-words-list">
-  <ul>
-    <li *ngFor="let translatedWord of translatedWords">
-      <span class="badge">{{ translatedWord.word }}</span>
-    </li>
-  </ul>
-</div>
-
-<div class="japanese-word-info-list">
-  <ul>
-    <li *ngFor="let japaneseWordInfo of japaneseWordInfoList">
-      <span class="badge">{{ japaneseWordInfo.word }}</span>
-    </li>
-  </ul>
-</div> -->
