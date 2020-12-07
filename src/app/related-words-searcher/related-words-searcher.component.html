@@ -32,7 +32,7 @@
 <div class="tanslated-words-list">
   <ul>
     <li *ngFor="let translatedWord of translatedWords">
-      <span class="badge">{{ translatedWord.word }}</span>
+      <span class="badge">{{ translatedWord.data.translations[0].translatedText }}</span>
     </li>
   </ul>
 </div>
@@ -46,13 +46,5 @@
 </div> -->
 
 <div class="test-button">
-  <span (click)="onTestConcatenatedRequests()">test search</span>
-</div>
-
-<div class="test-numbers-list">
-  <ul>
-    <li *ngFor="let mynumber of varForTestingConcatenatedRequests">
-      <span class="badge">{{ mynumber }}</span>
-    </li>
-  </ul>
+  <span (click)="onTestTranslation()">test translations</span>
 </div>

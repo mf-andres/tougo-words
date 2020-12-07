@@ -1,3 +1,9 @@
 export interface TranslatedWord {
-    word: string;
+    data: {
+        translations: Translation[]
+    };
+}
+
+interface Translation {
+    translatedText: string;
 }
