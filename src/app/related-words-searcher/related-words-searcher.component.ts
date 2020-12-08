@@ -32,12 +32,20 @@ export class RelatedWordsSearcherComponent implements OnInit {
   ngOnInit(): void {}
 
   onSearch(): void {
+    this.resetLists()
     this.searchEnglishRelatedWordsService
       .search(this.word)
       .subscribe((relatedWords) => {
         this.setRelatedWords(relatedWords);
         this.translateRelatedWordsAndSetMoreThings(relatedWords);
       });
+  }
+
+  private resetLists() {
+    this.relatedWords = []
+    this.translatedWords = []
+    this.translatedWordsLinks = []
+    this.translatedWordsLinks = []
   }
 
   private setRelatedWords(relatedWords: RelatedWord[]) {
