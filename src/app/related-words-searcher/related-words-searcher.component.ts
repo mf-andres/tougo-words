@@ -11,7 +11,7 @@ import { Observable, forkJoin } from 'rxjs';
   styleUrls: ['./related-words-searcher.component.css'],
 })
 export class RelatedWordsSearcherComponent implements OnInit {
-  word: string = 'example';
+  word: string = 'flower';
   relatedWords: RelatedWord[] = [];
   translatedWords: TranslatedWord[] = [];
   translatedWordsLinks: string[] = [];
