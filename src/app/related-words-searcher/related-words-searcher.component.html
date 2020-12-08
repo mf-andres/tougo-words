@@ -13,6 +13,10 @@
   <span (click)="onSearch()">search</span>
 </div>
 
+<div *ngIf="relatedWords?.length > 0">
+  <h2>Related Words</h2>
+</div>
+
 <div class="related-words-list">
   <ul>
     <li *ngFor="let relatedWord of relatedWords">
