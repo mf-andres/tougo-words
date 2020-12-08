@@ -16,6 +16,12 @@ export class RelatedWordsSearcherComponent implements OnInit {
   translatedWords: TranslatedWord[] = [];
   translatedWordsLinks: string[] = [];
 
+  relatedWordsComponents: {
+    word: string,
+    translatedWord: string,
+    translatedWordLink: string
+  }[] = [];
+
   maxNumberOfWords = 20;
 
   constructor(
@@ -46,6 +52,7 @@ export class RelatedWordsSearcherComponent implements OnInit {
     forkJoin(translatedWordsObservables).subscribe((translatedWords) => {
       this.setTranslatedWords(translatedWords);
       this.setTranslatedWordsLinks(translatedWords);
+      this.setRelatedWordsComponents();
     });
   }
 
@@ -78,4 +85,15 @@ export class RelatedWordsSearcherComponent implements OnInit {
     const link = 'https://jisho.org/search/' + translatedWordText;
     return link;
   }
+
+  private setRelatedWordsComponents() {
+    for (let index = 0; index < this.relatedWords.length; index++) {
+      const relatedWordComponent = {
+        word: this.relatedWords[index].word,
+        translatedWord: this.translatedWords[index].data.translations[0].translatedText,
+        translatedWordLink: this.translatedWordsLinks[index]    
+      }
+      this.relatedWordsComponents.push(relatedWordComponent)
+    }
+  } 
 }

@@ -10,33 +10,21 @@
 </div>
 
 <div class="search-button">
-  <span (click)="onSearch()">search</span>
+  <span (click)="onSearch()">Search</span>
 </div>
 
-<div *ngIf="relatedWords?.length > 0">
+<div>
   <h2>Related Words</h2>
 </div>
 
-<div class="related-words-list">
+<div class="related-words-components-list">
   <ul>
-    <li *ngFor="let relatedWord of relatedWords">
-      <span class="badge">{{ relatedWord.word }}</span>
-    </li>
-  </ul>
-</div>
-
-<div class="tanslated-words-list">
-  <ul>
-    <li *ngFor="let translatedWord of translatedWords">
-      <span class="badge">{{ translatedWord.data.translations[0].translatedText }}</span>
-    </li>
-  </ul>
-</div>
-
-<div class="translated-words-links-list">
-  <ul>
-    <li *ngFor="let translatedWordLink of translatedWordsLinks">
-      <span class="badge">{{ translatedWordLink }}</span>
+    <li *ngFor="let relatedWordComponent of relatedWordsComponents">
+      <span class="badge">
+        {{ relatedWordComponent.word }}
+        - 
+        <a href="{{relatedWordComponent.translatedWordLink}}"> {{ relatedWordComponent.translatedWord }} </a>
+      </span>
     </li>
   </ul>
 </div>
